@@ -156,7 +156,6 @@ export class RegisterComponent implements OnInit {
 
   setSkills(skills): FormArray {
     const formArray = new FormArray([]);
-    // console.log('skills===', skills);
     const skills1 = JSON.parse(skills);
 
     skills1.forEach((element) => {

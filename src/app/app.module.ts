@@ -18,6 +18,10 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
 import { TestComponent } from './test/test.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharkDirective } from './shark.directive';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
+import { VehicleComponent } from './vehicle/vehicle.component';
+import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { SharkDirective } from './shark.directive';
     TestComponent,
     DashboardComponent,
     SharkDirective,
+    ParentComponent,
+    ChildComponent,
+    VehicleComponent,
+    AddVehicleComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +50,9 @@ import { SharkDirective } from './shark.directive';
       { path: 'list', component: ListEmployeesComponent },
       { path: 'edit/:id', component: RegisterComponent },
       { path: 'test', component: TestComponent },
+      { path: 'parent', component: ParentComponent },
+      { path: 'vehicle', component: VehicleComponent },
+      { path: 'addvehicle', component: AddVehicleComponent },
     ]),
   ],
   providers: [],
