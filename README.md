@@ -1,0 +1,2 @@
+# mantra
+angular project
