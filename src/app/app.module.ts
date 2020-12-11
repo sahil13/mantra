@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+<<<<<<< HEAD
 import { ProductComponent } from './product/product.component';
 import { RouterModule } from '@angular/router';
 import { ProductPipe } from './product.pipe';
@@ -53,6 +54,27 @@ import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
       { path: 'parent', component: ParentComponent },
       { path: 'vehicle', component: VehicleComponent },
       { path: 'addvehicle', component: AddVehicleComponent },
+=======
+import { ListEmployeeComponent } from './list-employee/list-employee.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { ReactiveFormsModule  } from '@angular/forms';
+import { EmpDetailComponent } from './emp-detail/emp-detail.component';
+import { MainEmployeeComponent } from './main-employee/main-employee.component';
+
+@NgModule({
+  declarations: [AppComponent, ListEmployeeComponent, AddEmployeeComponent, EmpDetailComponent, MainEmployeeComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: 'list', component: ListEmployeeComponent },
+      { path: 'add', component: AddEmployeeComponent },
+      { path: 'detail', component: MainEmployeeComponent }
+>>>>>>> test
     ]),
   ],
   providers: [],

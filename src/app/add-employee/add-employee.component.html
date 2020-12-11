@@ -1,0 +1,24 @@
+
+<div >
+    <form [formGroup]="empForm" (ngSubmit)="submitEmployee()">
+        <div [ngClass]="{'has-error':(empForm.get('empName').invalid && empForm.get('empName').touched)}">
+            <label>Name</label>
+            <input type="text" formControlName="empName" />
+            <div *ngIf="empForm.get('empName').touched && empForm.get('empName').errors?.required">Name is Required</div>
+       <div *ngIf="empForm.get('empName').errors?.nameLength">
+           min length should be 4 digit
+       </div>
+        </div>
+        <div [ngClass]="{'has-error':(empForm.get('designation').invalid && empForm.get('designation').touched)}">
+            <label>Designation</label>
+            <input type="text" formControlName="designation" />
+        </div>
+        <div [ngClass]="{'has-error':(empForm.get('salary').invalid && empForm.get('salary').touched)}">
+            <label>Salary</label>
+            <input type="text" formControlName="salary" />
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>

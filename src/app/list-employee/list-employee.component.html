@@ -1,0 +1,63 @@
+----------{{ emp11 }}
+<!-- 
+<div>
+    <input type="button" value="Add Employee" (click)="addEmployee()" />
+    <input type="button" value="Reset" (click)="resetData()" />
+</div>
+
+<br/>
+<div>
+    <select (change)="filterList($event.target.value)">
+        <option value="">
+           select Employee
+        </option>
+        <option value="Sahil Arora">
+            sahil arora
+        </option>
+        <option value="Jatin">
+            Jatin
+        </option>
+    </select>
+</div>
+<div>
+    <table border="1">
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Designation
+        </td>
+        <td>
+            Salary
+        </td>
+        <td>
+            Department
+        </td>
+        <td>
+            Action
+        </td>
+    </tr>
+    <ng-container *ngIf="empList$ | async as empList">
+    <tr *ngFor="let emp of empList; let i=index">
+        <td>{{emp.empName}}</td>
+        <td>{{emp.designation}}</td>
+        <td>{{emp.salary}}</td>
+        <td>{{emp.name}}</td>
+        <td><input type="button" value="Remove" (click)="removeEmployee(i)" /></td>
+    </tr>
+</ng-container>
+</table>
+</div>
+ -->
+
+<ul>
+    <ng-container *ngIf="empList$ | async as empList">
+        <li *ngFor="let emp of empList; let i=index">
+            <div (click)="filterList(emp.empName)">
+                <span>{{emp.empName}}</span>
+                <span> ({{emp.designation}})</span>
+            </div>
+        </li>
+    </ng-container>
+</ul>
