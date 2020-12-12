@@ -17,9 +17,8 @@ export class Employees {
 
   private API_URL = 'http://localhost/oshop/employee.php';
 
-  getEmployees(): Observable<IEmployee> {
-    return this.http.get<IEmployee>(this.API_URL);
-  }
+  employees$ = this.http.get<IEmployee[]>(this.API_URL);
+
   handleError(error: HttpErrorResponse) {
     if (error instanceof ErrorEvent) {
       console.log('error=', error);

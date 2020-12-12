@@ -8,15 +8,12 @@ import { Employees } from '../shared/employees.service';
   styleUrls: ['./list-employees.component.scss'],
 })
 export class ListEmployeesComponent implements OnInit {
-  listEmployees;
+  constructor(private employeesService: Employees, private _route: Router) {}
 
-  constructor(private employees: Employees, private _route: Router) {}
+  listEmployees$ = this.employeesService.employees$;
 
-  ngOnInit(): void {
-    this.employees
-      .getEmployees()
-      .subscribe((listEmployees) => (this.listEmployees = listEmployees));
-  }
+
+  ngOnInit(): void {}
   editEmployee(id: number) {
     this._route.navigate(['/edit', id]);
   }
