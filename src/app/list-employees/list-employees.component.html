@@ -1,0 +1,16 @@
+<p>list-employees works!</p>
+
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Designation</td>
+        <td>salary</td>
+        <td>Action</td>
+    </tr>
+    <tr *ngFor="let employee of listEmployees">
+        <td>{{employee.empName}}</td>
+        <td>{{employee.designation}}</td>
+        <td>{{employee.salary}}</td>
+        <td><input type="button" value="edit" (click)="editEmployee(employee.id)" /></td>
+    </tr>
+</table>

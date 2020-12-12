@@ -1,0 +1,48 @@
+<select (change)="filterProducts($event.target.value)">
+    <option>select Product</option>
+    <option *ngFor="let product of products">{{product.product_name}}</option>
+</select>
+<div *ngIf="products">
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>price</td>
+            <td>Rating</td>
+            <td>Detail (Routing with parameters)</td>
+
+        </tr>
+        <tr *ngFor="let product of products">
+            <td>{{product.product_name | product:'-'}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <app-star [rating]='product.rating' (ratingClicked)="eventEmitted($event)"></app-star>
+            </td>
+            <td> <a [routerLink]="['/product-detail', product.id ]">Product Detail</a></td>
+
+        </tr>
+    </table>
+</div>
+<div>
+    {{errorMessage?.statusText}}
+</div>
+<h2>Add Product</h2>
+
+<div *ngFor="let productsArr of productsArray.controls">
+   
+        <form (ngSubmit)="addProduct()">
+            <ng-container [formGroup]="productsArr">
+            Name : <input type="text" formControlName="product_name" />
+            Price : <input type="text" formControlName="price" />
+            Rating : <input type="text" formControlName="rating" />
+            <input type="submit" value="Save" />
+            {{ productForm.value | json }}
+        </ng-container>
+        </form>
+   
+</div>
+
+ <input type="button" value="append" (click)="appendProducts()" /> 
+
+<h2>Routing with parameters</h2>

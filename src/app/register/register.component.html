@@ -1,0 +1,68 @@
+<div class="container">
+    <form [formGroup]="registerForm" id="form_login" (ngSubmit)="submitRegisterForm()">
+        <div class="form-control">
+            <label>Name</label>
+            <input type="text" formControlName="name" (blur)="logValidationErrors()"  />
+            <div *ngIf="formErrors.name">{{formErrors.name}}</div>
+        </div>
+
+        <ng-container formGroupName="emailGroup">
+            <div class="form-control">
+                <label>Email</label>
+                <input type="text" formControlName="email" (blur)="logValidationErrors()" />
+                <div *ngIf="formErrors.email">{{formErrors.email}}</div>
+            </div>
+            <div class="form-control">
+                <label>Confirm Email</label>
+                <input type="text" formControlName="cfmEmail" (blur)="logValidationErrors()" />
+                <div *ngIf="formErrors.cfmEmail || formErrors.emailGroup">
+                    {{formErrors.cfmEmail?formErrors.cfmEmail:formErrors.emailGroup}}</div>
+            </div>
+        </ng-container>
+
+        <input type="button" (click)="addNewSkill()" value="Add Skills"
+            [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}" />
+
+        <ng-container formArrayName="skills" *ngFor="let skill of registerForm.get('skills')['controls']; let i=index">
+            <div [formGroupName]="i" class="add-skills">
+
+                <div class="form-control">
+                    <label [attr.for]="'skillName'+i">Skill</label>
+                    <input type="text" formControlName="skillName" [id]="'skillName'+i" />
+                    <div *ngIf="skill.get('skillName').errors?.required">
+                        SkillName is Required</div>
+                </div>
+
+                <div class="form-control">
+                    <label>Experience</label>
+                    <input type="text" formControlName="experience" [id]="'experience'+i" />
+                    <div *ngIf="skill.get('experience').errors?.required">
+                        Experience is Required</div>
+                </div>
+
+                <div class="form-control">
+                    <label>Proficiency</label>
+                    <div>
+                        <input type="radio" formControlName="proficiency" value="Beginner" />
+                        Beginner
+                        <input type="radio" formControlName="proficiency" value="intermediate" /> intermediate
+                        <input type="radio" formControlName="proficiency" value="Advanced" />
+                        Advanced
+                        <div *ngIf="skill.get('proficiency').errors?.required">
+                            Proficiency is Required</div>
+                    </div>
+                </div>
+
+                <div *ngIf="registerForm.get('skills')?.length>1">
+                    <input type="button" value="remove" (click)="removeSkills(i)" />
+                </div>
+            </div>
+        </ng-container>
+        <div>
+            <input type="submit" value="Submit" [ngClass]="{'btn-disabled':!registerForm.valid}" />
+        </div>
+
+
+    </form>
+
+</div>

@@ -1,0 +1,52 @@
+.btn-disabled {
+  cursor: not-allowed;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  label {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  input {
+    display: block;
+    border-radius: 2px;
+    border: 1px solid #716d6d;
+    padding: 4px 12px;
+    width: calc(100% - 26px);
+    & + div {
+      color: red;
+    }
+  }
+}
+
+.container {
+  float: right;
+  /* position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%, -50%); */
+  form {
+    background: #000;
+    padding: 4px 10px;
+    color: #fff;
+  }
+}
+
+input[type="radio"] {
+  display: inline-block !important;
+  width:auto !important;
+}
+
+.add-skills{
+    border-bottom: 2px solid #fff;
+    margin: 10px 0;
+}
+
+@media only screen and (min-width: 1600px) {
+  .form-control {
+    label {
+      font-size: 1.4rem;
+    }
+  }
+}
