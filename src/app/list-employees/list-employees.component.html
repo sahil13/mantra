@@ -1,17 +1,24 @@
-
-<table border="1">
-    <tr>
-        <td>Name</td>
-        <td>Designation</td>
-        <td>salary</td>
-        <td>Action</td>
-    </tr>
-    <ng-container *ngIf="listEmployees$ | async as employees">
-        <tr *ngFor="let employee of employees">
-            <td>{{employee.empName}}</td>
-            <td>{{employee.designation}}</td>
-            <td>{{employee.salary}}</td>
-            <td><input type="button" value="edit" (click)="editEmployee(employee.id)" /></td>
+<div>
+    <select (change)="onSelected($event.target.value)">
+        <option value="">Select Value</option>
+        <option value="Sahil Arora">Sahil</option>
+    </select>
+</div>
+<div style="margin:10px 0 0 0">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Designation</td>
+            <td>salary</td>
+            <td>Action</td>
         </tr>
-    </ng-container>
-</table>
+        <ng-container *ngIf="listEmployees$ | async as employees">
+            <tr *ngFor="let employee of employees">
+                <td>{{employee.empName}}</td>
+                <td>{{employee.designation}}</td>
+                <td>{{employee.salary}}</td>
+                <td><input type="button" value="edit" (click)="editEmployee(employee.id)" /></td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

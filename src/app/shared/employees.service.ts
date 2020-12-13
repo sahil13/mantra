@@ -5,8 +5,8 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Subject, combineLatest, Observable, BehaviorSubject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { IEmployee } from './IEmployee';
 
 @Injectable({
@@ -18,6 +18,18 @@ export class Employees {
   private API_URL = 'http://localhost/oshop/employee.php';
 
   employees$ = this.http.get<IEmployee[]>(this.API_URL);
+
+  selectedNameSubject = new BehaviorSubject<string>('');
+  selectedNameAction$ = this.selectedNameSubject.asObservable();
+
+  filteredData$ = combineLatest([
+    this.employees$,
+    this.selectedNameAction$,
+  ]).pipe(
+    map(([employees, selectedName]) =>
+      employees.filter((employee) => selectedName ? employee.empName === selectedName : true )
+    )
+  );
 
   handleError(error: HttpErrorResponse) {
     if (error instanceof ErrorEvent) {
