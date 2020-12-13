@@ -15,19 +15,31 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
+import { TestComponent } from './test/test.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, EmployeeComponent, RegisterComponent, ListEmployeesComponent, ListEmployeesComponent],
+  declarations: [
+    AppComponent,
+    EmployeeComponent,
+    RegisterComponent,
+    ListEmployeesComponent,
+    ListEmployeesComponent,
+    TestComponent,
+    DashboardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ProductModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
+      { path: '', component: DashboardComponent },
       { path: 'employee', component: EmployeeComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'list', component: ListEmployeesComponent },
-      { path: 'edit/:id', component: RegisterComponent }
+      { path: 'edit/:id', component: RegisterComponent },
+      { path: 'test', component: TestComponent },
     ]),
   ],
   providers: [],
