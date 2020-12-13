@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import {
   HttpClient,
   HttpClientModule,
@@ -6,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject, combineLatest, Observable, BehaviorSubject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { IEmployee } from './IEmployee';
 
 @Injectable({
@@ -22,14 +23,17 @@ export class Employees {
   selectedNameSubject = new BehaviorSubject<string>('');
   selectedNameAction$ = this.selectedNameSubject.asObservable();
 
-  filteredData$ = combineLatest([
+   filteredData$ = combineLatest([
     this.employees$,
     this.selectedNameAction$,
   ]).pipe(
     map(([employees, selectedName]) =>
-      employees.filter((employee) => selectedName ? employee.empName === selectedName : true )
-    )
-  );
+      employees.filter((employee) =>
+        selectedName ? employee.empName === selectedName : true
+      )
+    ),
+    tap((data) => console.log(data))
+  ); 
 
   handleError(error: HttpErrorResponse) {
     if (error instanceof ErrorEvent) {

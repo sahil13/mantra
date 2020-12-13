@@ -15,8 +15,7 @@ export class ListEmployeesComponent implements OnInit {
   listEmployees$ = this.employeesService.filteredData$;
 
   ngOnInit(): void {
-    this.employeesService.filteredData$.pipe(
-      map(data => console.log("=======", data)));
+  
   }
   editEmployee(id: number) {
     this._route.navigate(['/edit', id]);

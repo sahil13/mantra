@@ -22,3 +22,15 @@
         </ng-container>
     </table>
 </div>
+
+<ng-container *ngIf="listEmployees$ | async as employees">
+    <div *ngFor="let employee of employees;let i = index">
+        <span>{{employee.empName}}</span>
+
+      {{employee['main_skills']}}
+       
+         <!--  <ng-container *ngFor="let skill of employee['main_skills']">
+            <span>{{skill?.sill_name}}</span>
+        </ng-container> -->  
+    </div>
+</ng-container>

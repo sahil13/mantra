@@ -150,7 +150,7 @@ export class RegisterComponent implements OnInit {
 
     this.registerForm.setControl(
       'skills',
-      this.setSkills(fetchedEmployee[0].skills)
+      this.setSkills(fetchedEmployee[0].main_skills)
     );
   }
 
