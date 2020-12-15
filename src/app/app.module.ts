@@ -17,6 +17,7 @@ import { RegisterComponent } from './register/register.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
 import { TestComponent } from './test/test.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SharkDirective } from './shark.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ListEmployeesComponent,
     TestComponent,
     DashboardComponent,
+    SharkDirective,
   ],
   imports: [
     BrowserModule,
