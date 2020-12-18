@@ -4,8 +4,8 @@
         <option value="Sahil Arora">Sahil</option>
     </select>
 </div>
-<div style="margin:10px 0 0 0">
-    <table border="1">
+<div style="margin:10px 0 0 0" class="col-md-6">
+    <table class="table table-bordered">
         <tr>
             <td>Name</td>
             <td>Designation</td>
@@ -17,7 +17,9 @@
                 <td>{{employee.empName}}</td>
                 <td>{{employee.designation}}</td>
                 <td>{{employee.salary}}</td>
-                <td><input type="button" value="edit" (click)="editEmployee(employee.id)" /></td>
+                <td><input type="button" value="edit" (click)="editEmployee(employee.id)" />
+                    <input type="button" value="Delete" (click)="deleteEmployee(employee.id)" />
+                </td>
             </tr>
         </ng-container>
     </table>

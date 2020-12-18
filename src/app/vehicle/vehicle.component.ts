@@ -13,7 +13,7 @@ export class VehicleComponent implements OnInit {
   constructor(private elem: ElementRef) {}
 
   // tslint:disable-next-line:ban-types
-  customerVehicleData: Array<Object> = [
+  customerVehicleData = [
     { customer_name: 'Sahil Arora', vrn: 'HR26AG1111' },
     { customer_name: 'Gunjan', vrn: 'HR26AG0100' },
   ];
@@ -26,7 +26,10 @@ export class VehicleComponent implements OnInit {
     this.viewpage = 1;
     this.viewData = this.customerVehicleData[i];
   }
-  deleteRecord(i) {}
+  deleteRecord(i) {
+    this.filteredData.splice(i, 1);
+  }
+
   filterData(value) {
     // this.customerVehicleData.filter(this.filterValues);
     this.filteredData = this.customerVehicleData.filter((e) => {

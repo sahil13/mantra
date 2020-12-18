@@ -1,18 +1,18 @@
 <div class="container">
     <form [formGroup]="registerForm" id="form_login" (ngSubmit)="submitRegisterForm()">
-        <div class="form-control">
+        <div>
             <label>Name</label>
-            <input type="text" formControlName="name" (blur)="logValidationErrors()"  />
+            <input type="text" formControlName="name" (blur)="logValidationErrors()" />
             <div *ngIf="formErrors.name">{{formErrors.name}}</div>
         </div>
 
         <ng-container formGroupName="emailGroup">
-            <div class="form-control">
+            <div>
                 <label>Email</label>
                 <input type="text" formControlName="email" (blur)="logValidationErrors()" />
                 <div *ngIf="formErrors.email">{{formErrors.email}}</div>
             </div>
-            <div class="form-control">
+            <div>
                 <label>Confirm Email</label>
                 <input type="text" formControlName="cfmEmail" (blur)="logValidationErrors()" />
                 <div *ngIf="formErrors.cfmEmail || formErrors.emailGroup">
@@ -20,27 +20,59 @@
             </div>
         </ng-container>
 
+         <div>
+            <label>Designation</label>
+            <input type="text" formControlName="designation" (blur)="logValidationErrors()" />
+            <div *ngIf="formErrors.designation">{{formErrors.designation}}</div>
+        </div>
+
+        <div>
+            <label>Salary</label>
+            <input type="text" formControlName="salary" (blur)="logValidationErrors()" />
+            <div *ngIf="formErrors.salary">{{formErrors.salary}}</div>
+        </div>
+
+        <div>
+            <label>Emp Code</label>
+            <input type="text" formControlName="emp_code" (blur)="logValidationErrors()" />
+            <div *ngIf="formErrors.emp_code">{{formErrors.emp_code}}</div>
+        </div> 
+
+        <div>
+            <label>Emp Code</label>
+            <select formControlName="department">
+                <ng-container *ngIf="department$ | async as department">
+                    <option value="{{dept.id}}" *ngFor="let dept of department">
+                        {{dept.deptName}}
+                    </option>
+                </ng-container>
+            </select>
+            <div *ngIf="formErrors.department">{{formErrors.department}}</div>
+        </div>
+
+
+
         <input type="button" (click)="addNewSkill()" value="Add Skills"
             [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}" />
 
         <ng-container formArrayName="skills" *ngFor="let skill of registerForm.get('skills')['controls']; let i=index">
             <div [formGroupName]="i" class="add-skills">
 
-                <div class="form-control">
+                <div>
                     <label [attr.for]="'skillName'+i">Skill</label>
                     <input type="text" formControlName="skillName" [id]="'skillName'+i" />
                     <div *ngIf="skill.get('skillName').errors?.required">
                         SkillName is Required</div>
                 </div>
 
-                <div class="form-control">
+                <div>
                     <label>Experience</label>
                     <input type="text" formControlName="experience" [id]="'experience'+i" />
                     <div *ngIf="skill.get('experience').errors?.required">
                         Experience is Required</div>
                 </div>
 
-                <div class="form-control">
+                <div>
                     <label>Proficiency</label>
                     <div>
                         <input type="radio" formControlName="proficiency" value="Beginner" />

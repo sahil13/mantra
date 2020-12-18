@@ -14,13 +14,17 @@ export class ListEmployeesComponent implements OnInit {
 
   listEmployees$ = this.employeesService.filteredData$;
 
-  ngOnInit(): void {
-  
-  }
+  ngOnInit(): void {}
   editEmployee(id: number) {
     this._route.navigate(['/edit', id]);
   }
   onSelected(value) {
     this.employeesService.selectedNameSubject.next(value);
+  }
+  deleteEmployee(id: number) {
+    console.log(id);
+    this.employeesService
+      .deleteEmployee(id)
+      .subscribe((data) => console.log(data));
   }
 }

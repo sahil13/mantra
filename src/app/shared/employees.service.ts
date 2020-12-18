@@ -14,16 +14,20 @@ import { IEmployee } from './IEmployee';
   providedIn: 'root',
 })
 export class Employees {
+  dept$: any;
   constructor(private http: HttpClient) {}
 
   private API_URL = 'http://localhost/oshop/employee.php';
-
+  private DELETE_API_URL = 'http://localhost/oshop/delete.php';
+  private ADD_API_URL = 'http://localhost/oshop/saveEmployee.php';
+  private DEPT_API_URL = 'http://localhost/oshop/dept.php';
   employees$ = this.http.get<IEmployee[]>(this.API_URL);
+  deptList$ = this.http.get(this.DEPT_API_URL);
 
   selectedNameSubject = new BehaviorSubject<string>('');
   selectedNameAction$ = this.selectedNameSubject.asObservable();
 
-   filteredData$ = combineLatest([
+  filteredData$ = combineLatest([
     this.employees$,
     this.selectedNameAction$,
   ]).pipe(
@@ -33,7 +37,7 @@ export class Employees {
       )
     ),
     tap((data) => console.log(data))
-  ); 
+  );
 
   handleError(error: HttpErrorResponse) {
     if (error instanceof ErrorEvent) {
@@ -49,10 +53,14 @@ export class Employees {
 
   updateEmployee(employee: IEmployee) {
     // console.log('sahil=', employee.empName);
-    return this.http.post<IEmployee>(this.API_URL + '?id=1', employee, {
+    return this.http.post<IEmployee>(this.ADD_API_URL, employee, {
       headers: new HttpHeaders({
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
       }),
     });
+  }
+
+  deleteEmployee(id) {
+    return this.http.get(this.DELETE_API_URL + '?id=' + id);
   }
 }

@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   employee: IEmployee;
+  department$;
 
   registerForm: FormGroup;
 
@@ -48,6 +49,18 @@ export class RegisterComponent implements OnInit {
     experience: {
       required: 'Experience is Required',
     },
+    designation: {
+      required: 'Designation should no be blank',
+    },
+    salary: {
+      required: 'Salary should no be blank',
+    },
+    emp_code: {
+      required: 'Employee Code is Required',
+    },
+    department: {
+      required: 'Department is Required',
+    },
     proficiency: {
       required: 'proficiency is Required',
     },
@@ -58,6 +71,10 @@ export class RegisterComponent implements OnInit {
     emailGroup: '',
     email: '',
     cfmEmail: '',
+    designation: '',
+    salary: '',
+    emp_code: '',
+    department: '',
     skillName: '',
     experience: '',
     proficiency: '',
@@ -73,17 +90,26 @@ export class RegisterComponent implements OnInit {
         },
         { validator: CustomValidators.matchEmail }
       ),
+      designation: ['', Validators.required],
+      salary: ['', Validators.required],
+      emp_code: ['', Validators.required],
+      department: ['', Validators.required],
       skills: this.fb.array([this.addSkillsGroup()]),
     });
     /*  this.registerForm.valueChanges.subscribe((data) => {
       this.logValidationErrors(this.registerForm);
     }); */
-    this.getEdittedEmployee();
+
+    const id = + this.route.snapshot.paramMap.get('id');
+    if (id > 0) {
+      this.getEdittedEmployee(id);
+    }
     this.employee = {
       empName: '',
       email: '',
       skills: [],
     };
+    this.getDepartments();
   }
 
   addSkillsGroup(): FormGroup {
@@ -129,8 +155,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  getEdittedEmployee() {
-    const id = this.route.snapshot.paramMap.get('id');
+  getEdittedEmployee(id) {
     this.employeeService
       .getEmployeeById(id)
       .subscribe((fetchedEmployee: IEmployee) => {
@@ -146,6 +171,10 @@ export class RegisterComponent implements OnInit {
         email: fetchedEmployee[0].email,
         cfmEmail: fetchedEmployee[0].email,
       },
+      designation: fetchedEmployee[0].designation,
+      salary: fetchedEmployee[0].salary,
+      emp_code: fetchedEmployee[0].emp_code,
+      department: fetchedEmployee[0].department,
     });
 
     this.registerForm.setControl(
@@ -180,6 +209,15 @@ export class RegisterComponent implements OnInit {
   mapValues(registerForm) {
     // console.log(registerForm.value.name);
     this.employee.empName = registerForm.value.name;
+    this.employee.email = registerForm.value.emailGroup.email;
+    this.employee.designation = registerForm.value.designation;
+    this.employee.salary = registerForm.value.salary;
+    this.employee.emp_code = registerForm.value.emp_code;
+    this.employee.department = registerForm.value.department;
     this.employee.skills = registerForm.value.skills;
+  }
+
+  getDepartments() {
+    this.department$ = this.employeeService.deptList$;
   }
 }
