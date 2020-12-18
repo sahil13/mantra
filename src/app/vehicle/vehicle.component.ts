@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-vehicle',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { VehicleCustomValidators } from '../shared/vehicleCustom.validators';
 
 @Component({
@@ -36,7 +37,7 @@ export class AddVehicleComponent implements OnInit {
     returnName: '',
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private route: Router) {}
 
   ngOnInit(): void {
     this.vrnForm = this.fb.group({
@@ -72,5 +73,7 @@ export class AddVehicleComponent implements OnInit {
 
   addVehicle() {
     console.log(this.vrnForm.value);
+    // this.vrnForm.push(this.vrnForm.value);
+    this.route.navigate(['/vehicle']);
   }
 }
