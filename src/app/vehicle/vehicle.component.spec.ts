@@ -1,25 +1,17 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { VehicleComponent } from './vehicle.component';
-
 describe('VehicleComponent', () => {
-  let component: VehicleComponent;
-  let fixture: ComponentFixture<VehicleComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ VehicleComponent ]
-    })
-    .compileComponents();
-  }));
+  let customerVehicleData;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VehicleComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    customerVehicleData = [
+      { customer_name: 'Sahil Arora', vrn: 'HR26AG1111' },
+      { customer_name: 'Gunjan', vrn: 'HR26AG0100' },
+    ];
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('increase array length', () => {
+   const len =  customerVehicleData.length;
+
+   expect(len).toBe(1);
+
   });
 });

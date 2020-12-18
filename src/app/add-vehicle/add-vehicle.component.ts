@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { VehicleCustomValidators } from '../shared/vehicleCustom.validators';
 
 @Component({
   selector: 'app-add-vehicle',
@@ -10,16 +11,19 @@ export class AddVehicleComponent implements OnInit {
   vrnForm;
 
   ValidationMessage = {
-    firstName: { required: 'FirstName is Required' },
+    firstName: {
+      required: 'FirstName is Required',
+      empName: 'Name should be jatin',
+    },
     lastName: { required: 'lastName is Required' },
     vrnNo: { required: 'vrnNo is Required' },
     mobileNo: {
       required: 'mobileNo is Required',
-      maxlength : 'Mobile No Should be 10 digit long'
-     },
+      maxlength: 'Mobile No Should be 10 digit long',
+    },
     address: { required: 'address is Required' },
     pickUpDate: { required: 'pickUpDate is Required' },
-    returnName: { required: 'returnName is Required' }
+    returnName: { required: 'returnName is Required' },
   };
 
   formErrors = {
@@ -29,14 +33,17 @@ export class AddVehicleComponent implements OnInit {
     mobileNo: '',
     address: '',
     pickUpDate: '',
-    returnName: ''
+    returnName: '',
   };
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.vrnForm = this.fb.group({
-      firstName: ['', Validators.required],
+      firstName: [
+        '',
+        [Validators.required, VehicleCustomValidators.replaceName],
+      ],
       lastName: ['', Validators.required],
       vrnNo: ['', Validators.required],
       mobileNo: ['', [Validators.required, Validators.maxLength(10)]],
