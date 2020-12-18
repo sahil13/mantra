@@ -4,37 +4,37 @@
     <div class="formgroup">
         <label>First Name</label>
         <input class="form-control" type="text" formControlName="firstName" (blur)="logValidationError()" />
-       <span class="text-warning" *ngIf="formErrors.firstName">{{formErrors.firstName}}</span>
+       <span class="text-danger" *ngIf="formErrors.firstName">{{formErrors.firstName}}</span>
     </div>
     <div class="formgroup">
         <label>Last Name</label>
         <input class="form-control" type="text" formControlName="lastName" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.lastName">{{formErrors.lastName}}</div>
+        <div class="text-danger" *ngIf="formErrors.lastName">{{formErrors.lastName}}</div>
     </div>
     <div class="formgroup">
         <label>Vehicle Registration No</label>
         <input class="form-control" type="text" formControlName="vrnNo" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.vrnNo">{{formErrors.vrnNo}}</div>
+        <div class="text-danger" *ngIf="formErrors.vrnNo">{{formErrors.vrnNo}}</div>
     </div>
     <div class="formgroup">
         <label>Mobile Number</label>
         <input class="form-control" type="text" formControlName="mobileNo" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.mobileNo">{{formErrors.mobileNo}}</div>
+        <div class="text-danger" *ngIf="formErrors.mobileNo">{{formErrors.mobileNo}}</div>
     </div>
     <div class="formgroup">
         <label>Address</label>
         <input class="form-control" type="text" formControlName="address" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.address">{{formErrors.address}}</div>
+        <div class="text-danger" *ngIf="formErrors.address">{{formErrors.address}}</div>
     </div>
     <div class="formgroup">
         <label>Pick Up Date</label>
         <input class="form-control" type="text" formControlName="pickUpDate" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.pickUpDate">{{formErrors.pickUpDate}}</div>
+        <div class="text-danger" *ngIf="formErrors.pickUpDate">{{formErrors.pickUpDate}}</div>
     </div>
     <div class="formgroup">
         <label>Return Name</label>
         <input class="form-control" type="text" formControlName="returnName" (blur)="logValidationError()" />
-        <div *ngIf="formErrors.returnName">{{formErrors.returnName}}</div>
+        <div class="text-danger" *ngIf="formErrors.returnName">{{formErrors.returnName}}</div>
     </div>
     <div class="m-t-10">
         <button class="btn btn-primary" type="submit" [disabled]="vrnForm.invalid">Submit</button>
