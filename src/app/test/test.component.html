@@ -1,0 +1,42 @@
+<form [formGroup]="empForm">
+    <div>
+        <label>Name</label>
+        <input type="text" formControlName="empName" />
+    </div>
+
+    <ng-container formGroupName="emailGroup">
+        <div>
+            <label>Email</label>
+            <input type="text" formControlName="email" />
+        </div>
+        <div>
+            <label>Confirm Email</label>
+            <input type="text" formControlName="cfmEmail" />
+        </div>
+    </ng-container>
+
+
+    <ng-container formArrayName="skills" *ngFor="let skills of empForm.get('skills')['controls'];let i = index">
+        <ng-container [formGroupName]="i">
+            <div>
+                <label>skill Name</label>
+                <input type="text" formControlName="skillName" />
+            </div>
+            <div>
+                <label>Experience</label>
+                <input type="text" formControlName="experience" />
+            </div>
+
+            <div>
+                <label>profiicency</label>
+                <input type="radio" formControlName="proficiency" /> Begineer
+                <input type="radio" formControlName="proficiency" /> Intermediate
+                <input type="radio" formControlName="proficiency" /> Expert
+            </div>
+
+        </ng-container>
+    </ng-container>
+
+    <input type="submit" [disabled]="empForm.invalid" />
+
+</form>

@@ -1,0 +1,44 @@
+<div class="red">
+    <form [formGroup]="employeeForm" (ngSubmit)="storeValues()">
+        <div>
+            <label>Name</label>
+            <input type="text" formControlName="fullName" (blur)="logValidationErrors()" />
+            <div class="has-errors" *ngIf="formErrors.fullName">{{formErrors.fullName}}</div>
+        </div>    
+
+
+        <div>
+            Email : <input type="radio" value="email" formControlName="contactPreference" />
+            Phone : <input type="radio" value="phone" formControlName="contactPreference" />
+        </div>
+
+        <div>
+            <label>email</label>
+            <input type="text" formControlName="email" (blur)="logValidationErrors()" />
+            <div class="has-errors" *ngIf="formErrors.email">{{formErrors.email}}</div>
+        </div>
+
+        <div>
+            <label> Phone </label>
+            <input type="text" formControlName="phone" />
+            <div class="has-errors" *ngIf="formErrors.phone">{{formErrors.phone}}</div>
+        </div>
+
+
+        <ng-container formGroupName="skills">
+            <div>
+                <label>skill Name</label>
+                <input type="text" formControlName="skillName" (blur)="logValidationErrors()" />
+                <div class="has-errors" *ngIf="formErrors.skillName">{{formErrors.skillName}}</div>
+            </div>
+
+            <div>
+                <label>no of years</label>
+                <input type="text" formControlName="years" />
+            </div>
+        </ng-container>
+
+        {{this.employeeForm.value | json}}
+        <input type="submit" value="save" />
+    </form>
+</div>

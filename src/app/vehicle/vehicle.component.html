@@ -1,0 +1,25 @@
+<div class="col-md-4" *ngIf="!viewpage">
+   
+    <div class="m-t-b-10">
+        <select class="form-control" (change)="filterData($event.target.value)">
+            <option>Sahil Arora</option>
+            <option>Gunjan</option>
+        </select>
+    </div>
+
+    <div class="vrn-row" *ngFor="let cvd of filteredData;let i = index">
+        <span>{{cvd.customer_name}}</span>
+        <span>{{cvd.vrn}}</span>
+        <button (click)="viewRecord(i)" class="btn btn-info btn-sm">View</button>
+        <button (click)="deleteRecord(i)" class="btn btn-info btn-sm">Delete</button>
+    </div>
+
+    <div class="pull-right"><a [routerLink]="['/addvehicle']">
+            <button class="btn btn-primary btn-sm"> Add Vehicle </button>
+        </a></div>
+</div>
+<div *ngIf="viewpage">
+    <div>Customer  : {{viewData.customer_name}}</div>
+    <div>Vehicle Registration No : {{viewData.vrn}}</div>
+   
+</div>

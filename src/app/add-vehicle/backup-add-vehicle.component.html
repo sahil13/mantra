@@ -1,0 +1,48 @@
+<form [formGroup]="vrnForm" (ngSubmit)="addVehicle()">
+    <div>
+        <label>First Name</label>
+        <input type="text" formControlName="firstName" />
+        <div class="error" *ngIf="vrnForm.get('firstName').touched && vrnForm.get('firstName').errors?.required">First Name is
+            Required</div>
+    </div>
+    <div>
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName" />
+        <div class="error" *ngIf="vrnForm.get('lastName').touched && vrnForm.get('lastName').errors?.required">Last Name
+            is Required</div>
+    </div>
+    <div>
+        <label>Vehicle Registration No</label>
+        <input type="text" formControlName="vrnNo" />
+        <div class="error" *ngIf="vrnForm.get('vrnNo').touched && vrnForm.get('vrnNo').errors?.required">vrn No is
+            Required</div>
+    </div>
+    <div>
+        <label>Mobile Number</label>
+        <input type="text" formControlName="mobileNo" />
+        <div class="error" *ngIf="vrnForm.get('mobileNo').touched && vrnForm.get('mobileNo').errors?.required">mobileNo
+            is Required</div>
+    </div>
+    <div>
+        <label>Address</label>
+        <input type="text" formControlName="address" />
+        <div class="error" *ngIf="vrnForm.get('address').touched && vrnForm.get('address').errors?.required">Address is
+            Required</div>
+    </div>
+    <div>
+        <label>Pick Up Date</label>
+        <input type="text" formControlName="pickUpDate" />
+        <div class="error" *ngIf="vrnForm.get('pickUpDate').touched && vrnForm.get('pickUpDate').errors?.required">Pick
+            Up Date is Required</div>
+    </div>
+    <div>
+        <label>Return Name</label>
+        <input type="text" formControlName="returnName" />
+        <div class="error" *ngIf="vrnForm.get('returnName').touched && vrnForm.get('returnName').errors?.required">Return
+            Name is Required</div>
+    </div>
+    <div>
+        <button type="submit" [disabled]="vrnForm.invalid">Submit</button>
+    </div>
+   
+</form>

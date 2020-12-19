@@ -1,0 +1,10 @@
+.has-error {
+  color: red;
+  label {
+    & + input {
+      & + div {
+        font-size: 12px;
+      }
+    }
+  }
+}
