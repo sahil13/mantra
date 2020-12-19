@@ -42,7 +42,8 @@ export class Employee {
             name: this.getDepartment(employee.dept, dept),
           } as IEmployee)
       )
-    )
+    ),
+    catchError(this.handleError)
   );
   // .subscribe((data) => console.log('=====', data));
 
@@ -57,7 +58,7 @@ export class Employee {
     let deptName: string;
     for (i = 0; i < department.length; i++) {
       if (deptId === department[i].id) {
-        return (deptName = department[i].deptName);
+        return deptName = department[i].deptName;
       }
     }
   }

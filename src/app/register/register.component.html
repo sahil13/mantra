@@ -1,100 +1,112 @@
 <div class="container">
-    <form [formGroup]="registerForm" id="form_login" (ngSubmit)="submitRegisterForm()">
-        <div>
-            <label>Name</label>
-            <input type="text" formControlName="name" (blur)="logValidationErrors()" />
-            <div *ngIf="formErrors.name">{{formErrors.name}}</div>
-        </div>
-
-        <ng-container formGroupName="emailGroup">
-            <div>
-                <label>Email</label>
-                <input type="text" formControlName="email" (blur)="logValidationErrors()" />
-                <div *ngIf="formErrors.email">{{formErrors.email}}</div>
-            </div>
-            <div>
-                <label>Confirm Email</label>
-                <input type="text" formControlName="cfmEmail" (blur)="logValidationErrors()" />
-                <div *ngIf="formErrors.cfmEmail || formErrors.emailGroup">
-                    {{formErrors.cfmEmail?formErrors.cfmEmail:formErrors.emailGroup}}</div>
-            </div>
-        </ng-container>
-
-         <div>
-            <label>Designation</label>
-            <input type="text" formControlName="designation" (blur)="logValidationErrors()" />
-            <div *ngIf="formErrors.designation">{{formErrors.designation}}</div>
-        </div>
-
-        <div>
-            <label>Salary</label>
-            <input type="text" formControlName="salary" (blur)="logValidationErrors()" />
-            <div *ngIf="formErrors.salary">{{formErrors.salary}}</div>
-        </div>
-
-        <div>
-            <label>Emp Code</label>
-            <input type="text" formControlName="emp_code" (blur)="logValidationErrors()" />
-            <div *ngIf="formErrors.emp_code">{{formErrors.emp_code}}</div>
-        </div> 
-
-        <div>
-            <label>Emp Code</label>
-            <select formControlName="department">
-                <ng-container *ngIf="department$ | async as department">
-                    <option value="{{dept.id}}" *ngFor="let dept of department">
-                        {{dept.deptName}}
-                    </option>
-                </ng-container>
-            </select>
-            <div *ngIf="formErrors.department">{{formErrors.department}}</div>
-        </div>
-
-
-
-        <input type="button" (click)="addNewSkill()" value="Add Skills"
-            [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}" />
-
-        <ng-container formArrayName="skills" *ngFor="let skill of registerForm.get('skills')['controls']; let i=index">
-            <div [formGroupName]="i" class="add-skills">
-
-                <div>
-                    <label [attr.for]="'skillName'+i">Skill</label>
-                    <input type="text" formControlName="skillName" [id]="'skillName'+i" />
-                    <div *ngIf="skill.get('skillName').errors?.required">
-                        SkillName is Required</div>
+    <form class="form-horizontal" [formGroup]="registerForm" id="form_login" (ngSubmit)="submitRegisterForm()">
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" formControlName="name" (blur)="logValidationErrors()" />
+                    <div *ngIf="formErrors.name">{{formErrors.name}}</div>
                 </div>
 
-                <div>
-                    <label>Experience</label>
-                    <input type="text" formControlName="experience" [id]="'experience'+i" />
-                    <div *ngIf="skill.get('experience').errors?.required">
-                        Experience is Required</div>
-                </div>
-
-                <div>
-                    <label>Proficiency</label>
-                    <div>
-                        <input type="radio" formControlName="proficiency" value="Beginner" />
-                        Beginner
-                        <input type="radio" formControlName="proficiency" value="intermediate" /> intermediate
-                        <input type="radio" formControlName="proficiency" value="Advanced" />
-                        Advanced
-                        <div *ngIf="skill.get('proficiency').errors?.required">
-                            Proficiency is Required</div>
+                <ng-container formGroupName="emailGroup">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" formControlName="email"
+                            (blur)="logValidationErrors()" />
+                        <div *ngIf="formErrors.email">{{formErrors.email}}</div>
                     </div>
+                    <div class="form-group">
+                        <label>Confirm Email</label>
+                        <input type="text" class="form-control" formControlName="cfmEmail"
+                            (blur)="logValidationErrors()" />
+                        <div *ngIf="formErrors.cfmEmail || formErrors.emailGroup">
+                            {{formErrors.cfmEmail?formErrors.cfmEmail:formErrors.emailGroup}}</div>
+                    </div>
+                </ng-container>
+
+                <div class="form-group">
+                    <label>Designation</label>
+                    <input type="text" class="form-control" formControlName="designation"
+                        (blur)="logValidationErrors()" />
+                    <div *ngIf="formErrors.designation">{{formErrors.designation}}</div>
                 </div>
 
-                <div *ngIf="registerForm.get('skills')?.length>1">
-                    <input type="button" value="remove" (click)="removeSkills(i)" />
+                <div class="form-group">
+                    <label>Salary</label>
+                    <input type="text" class="form-control" formControlName="salary" (blur)="logValidationErrors()" />
+                    <div *ngIf="formErrors.salary">{{formErrors.salary}}</div>
+                </div>
+
+                <div class="form-group">
+                    <label>Emp Code</label>
+                    <input type="text" class="form-control" formControlName="emp_code" (blur)="logValidationErrors()" />
+                    <div *ngIf="formErrors.emp_code">{{formErrors.emp_code}}</div>
+                </div>
+
+                <div>
+                    <label>Department</label>
+                    <select formControlName="department" class="form-control">
+                        <ng-container *ngIf="department$ | async as department">
+                            <option value="{{dept.id}}" *ngFor="let dept of department">
+                                {{dept.deptName}}
+                            </option>
+                        </ng-container>
+                    </select>
+                    <div *ngIf="formErrors.department">{{formErrors.department}}</div>
                 </div>
             </div>
-        </ng-container>
-        <div>
-            <input type="submit" value="Submit" [ngClass]="{'btn-disabled':!registerForm.valid}" />
+            <div class="col-md-6">
+                <div class="col-md-12 text-right">
+                <button type="button" class="btn btn-info" (click)="addNewSkill()"
+                    [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}">Add Skills
+                </button>
+            </div>
+
+                <ng-container formArrayName="skills"
+                    *ngFor="let skill of registerForm.get('skills')['controls']; let i=index">
+                    <div [formGroupName]="i" class="add-skills">
+
+                        <div class="form-group">
+                            <label [attr.for]="'skillName'+i">Skill</label>
+                            <input type="text" class="form-control" formControlName="skillName" [id]="'skillName'+i" />
+                            <div *ngIf="skill.get('skillName').errors?.required">
+                                SkillName is Required</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Experience</label>
+                            <input type="text" class="form-control" formControlName="experience"
+                                [id]="'experience'+i" />
+                            <div *ngIf="skill.get('experience').errors?.required">
+                                Experience is Required</div>
+                        </div>
+
+                        <div>
+                            <label>Proficiency</label>
+                            <div>
+                                <input type="radio" formControlName="proficiency" value="Beginner" />
+                                Beginner
+                                <input type="radio" formControlName="proficiency" value="intermediate" /> intermediate
+                                <input type="radio" formControlName="proficiency" value="Advanced" />
+                                Advanced
+                                <div *ngIf="skill.get('proficiency').errors?.required">
+                                    Proficiency is Required</div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="registerForm.get('skills')?.length>1">
+                            <input type="button" value="remove" (click)="removeSkills(i)" />
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="col-md-12 text-center">
+            <div>
+                <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled':!registerForm.valid}">
+                    Submit
+                </button>
+            </div>
+            </div>
         </div>
-
-
     </form>
-
 </div>

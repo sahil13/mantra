@@ -1,38 +1,51 @@
-<div>
-    <select (change)="onSelected($event.target.value)">
-        <option value="">Select Value</option>
-        <option value="Sahil Arora">Sahil</option>
-    </select>
-</div>
-<div style="margin:10px 0 0 0" class="col-md-6">
-    <table class="table table-bordered">
-        <tr>
-            <td>Name</td>
-            <td>Designation</td>
-            <td>salary</td>
-            <td>Action</td>
-        </tr>
-        <ng-container *ngIf="listEmployees$ | async as employees">
-            <tr *ngFor="let employee of employees">
-                <td>{{employee.empName}}</td>
-                <td>{{employee.designation}}</td>
-                <td>{{employee.salary}}</td>
-                <td><input type="button" value="edit" (click)="editEmployee(employee.id)" />
-                    <input type="button" value="Delete" (click)="deleteEmployee(employee.id)" />
-                </td>
+<div class="col-md-6" style="margin:10px 0 0 0">
+    <div class="row">
+        <div class="col-md-6">
+            <select class="form-control" (change)="onSelected($event.target.value)">
+                <option value="">Select Value</option>
+                <ng-container *ngIf="emp$ | async as stud">
+                    <option *ngFor="let emp of stud" value="{{emp.empName}}">{{emp.empName}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <button class="btn btn-danger" (click)="resetList()">Reset</button>
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <a [routerLink]="['/register']"><button class="btn btn-info">Add Employee</button></a>
+        </div>      
+    </div>
+    <div style="margin:4px 0 0 0">
+        <table class="table table-bordered">
+            <tr>
+                <td>Name</td>
+                <td>Designation</td>
+                <td>salary</td>
+                <td>Action</td>
             </tr>
-        </ng-container>
-    </table>
+            <ng-container *ngIf="listEmployees$ | async as employees">
+                <tr *ngFor="let employee of employees">
+                    <td>{{employee.empName}}</td>
+                    <td>{{employee.designation}}</td>
+                    <td>{{employee.salary}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm" (click)="editEmployee(employee.id)"> Edit
+                        </button>
+                        <button type="button" style="margin-left:4px;" class="btn btn-info btn-sm"
+                            (click)="deleteEmployee(employee.id)">Delete </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </table>
+    </div>
 </div>
 
-<ng-container *ngIf="listEmployees$ | async as employees">
+<!-- <ng-container *ngIf="listEmployees$ | async as employees">
     <div *ngFor="let employee of employees;let i = index">
         <span>{{employee.empName}}</span>
 
       {{employee['main_skills']}}
        
-         <!--  <ng-container *ngFor="let skill of employee['main_skills']">
-            <span>{{skill?.sill_name}}</span>
-        </ng-container> -->  
+       
     </div>
-</ng-container>
+</ng-container> -->

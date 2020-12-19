@@ -13,6 +13,7 @@ export class ListEmployeesComponent implements OnInit {
   constructor(private employeesService: Employees, private _route: Router) {}
 
   listEmployees$ = this.employeesService.filteredData$;
+  emp$ = this.employeesService.employees$;
 
   ngOnInit(): void {}
   editEmployee(id: number) {
@@ -20,6 +21,9 @@ export class ListEmployeesComponent implements OnInit {
   }
   onSelected(value) {
     this.employeesService.selectedNameSubject.next(value);
+  }
+  resetList(){
+    this.employeesService.selectedNameSubject.next('');
   }
   deleteEmployee(id: number) {
     console.log(id);
