@@ -116,7 +116,7 @@ export class RegisterComponent implements OnInit {
     return this.fb.group({
       skillName: ['', Validators.required],
       experience: ['', Validators.required],
-      proficiency: ['', Validators.required],
+      proficiency: ['Beginner', Validators.required],
     });
   }
 
