@@ -55,7 +55,7 @@
                     <div *ngIf="formErrors.department">{{formErrors.department}}</div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="col-md-12 text-right">
                 <button type="button" class="btn btn-info" (click)="addNewSkill()"
                     [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}">Add Skills
@@ -64,8 +64,10 @@
 
                 <ng-container formArrayName="skills"
                     *ngFor="let skill of registerForm.get('skills')['controls']; let i=index">
-                    <div [formGroupName]="i" class="add-skills">
-
+                    <div [formGroupName]="i" class="skills">
+                        <div *ngIf="registerForm.get('skills')?.length>1" class="text-right">
+                            <button class="btn btn-danger btn-sm" type="button" (click)="removeSkills(i)"> remove </button>
+                        </div>
                         <div class="form-group">
                             <label [attr.for]="'skillName'+i">Skill</label>
                             <input type="text" class="form-control" (blur)="logValidationErrors()" formControlName="skillName" [id]="'skillName'+i" />
@@ -94,13 +96,11 @@
                             </div>
                         </div>
 
-                        <div *ngIf="registerForm.get('skills')?.length>1">
-                            <input type="button" value="remove" (click)="removeSkills(i)" />
-                        </div>
+                       
                     </div>
                 </ng-container>
             </div>
-            <div class="col-md-12 text-center">
+            <div class="col-md-8 text-center m-t-10">
             <div>
                 <button type="submit" class="btn btn-primary" [ngClass]="{'btn-disabled':!registerForm.valid}">
                     Submit
