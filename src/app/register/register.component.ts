@@ -7,7 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from '../shared/custom.validators';
 import { Employees } from '../shared/employees.service';
 import { IEmployee } from '../shared/IEmployee';
@@ -22,7 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private employeeService: Employees
+    private employeeService: Employees,
+    private _route: Router
   ) {}
 
   employee: IEmployee;
@@ -219,5 +220,8 @@ export class RegisterComponent implements OnInit {
 
   getDepartments() {
     this.department$ = this.employeeService.deptList$;
+  }
+  showList(){
+    this._route.navigate(['/list']);
   }
 }

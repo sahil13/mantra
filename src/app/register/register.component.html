@@ -57,9 +57,13 @@
             </div>
             <div class="col-md-4">
                 <div class="col-md-12 text-right">
-                <button type="button" class="btn btn-info" (click)="addNewSkill()"
+                <button type="button" class="btn btn-info btn-sm" (click)="addNewSkill()"
                     [ngClass]="{'btn-disabled':registerForm.get('skills').invalid}">Add Skills
                 </button>
+
+                <button type="button" class="btn btn-primary btn-sm m-l-4" (click)="showList()"
+                >Employees List
+            </button>
             </div>
 
                 <ng-container formArrayName="skills"
